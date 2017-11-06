@@ -14,10 +14,13 @@
                 controller: "HomeController",
                 controllerAs: "model"
             })
-
+            .when("/signIn", {
+                templateUrl: "client/views/signIn/signIn.view.html",
+                controller: "SignInController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "home"
             });
     }
-
 })();

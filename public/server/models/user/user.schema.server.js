@@ -1,4 +1,5 @@
 module.exports = function () {
+
 var  wordSchema =  require("../schemas/word.schema.server")();
     var mongoose = require("mongoose");
 
