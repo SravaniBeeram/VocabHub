@@ -1,11 +1,10 @@
-var express = require('express');
-var app = express();
+var app = require('./express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
 var port = process.env.PORT || 3000;
-app.use(express.static(__dirname + '/public'));
+app.use(app.express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,5 +15,6 @@ var db = mongoose.connect(connectionString);
 
 app.use(passport.initialize());
 app.use(passport.session());
-//require("./public/server/app.js")(app);
+require('./server/app');
+
 app.listen(port);

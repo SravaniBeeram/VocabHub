@@ -1,18 +1,21 @@
-module.exports = function(app,userModel) {
+ var app = require('./../../express');
+ var userModel = require('../models/user/user.model');
+ var passport = require('passport');
+ var LocalStrategy = require('passport-local').Strategy;
+ var bcrypt = require("bcrypt-nodejs");
 
-    var passport = require('passport');
-    var LocalStrategy = require('passport-local').Strategy;
-    var bcrypt = require("bcrypt-nodejs");
+ var auth = authorized;
+ app.post('/api/signIn', passport.authenticate('local'), login);
+ app.post('/api/signOut', logout);
+ app.get('/api/loggedIn', loggedIn);
+ app.get ('/api/signUp/user', findUserByUserName);
+ // app.get('/api/signUp/user?username);
+ app.post('/api/signUp/register', register);
 
-    var auth = authorized;
-    app.post('/api/signIn', passport.authenticate('local'), login);
-    app.post('/api/signOut', logout);
-    app.get('/api/loggedIn', loggedIn);
 
-
-    passport.use('local', new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+ passport.use(new LocalStrategy(localStrategy));
+ passport.serializeUser(serializeUser);
+ passport.deserializeUser(deserializeUser);
 
 
     function localStrategy(username, password, done) {
@@ -61,10 +64,22 @@ module.exports = function(app,userModel) {
         }
     }
 
+ function register(req, res) {
+     var userObj = req.body;
+     userObj.password = bcrypt.hashSync(userObj.password);
+     userModel
+         .createUser(userObj)
+         .then(function (user) {
+             req
+                 .login(user, function (status) {
+                     res.send(status);
+                 });
+         });
+ }
+
     function login(req, res) {
-        var user = req.user;
-        delete user.password;
-        res.json(user);
+        res.json(req.user);
+
     }
 
     function loggedIn(req, res) {
@@ -76,5 +91,18 @@ module.exports = function(app,userModel) {
         req.logOut();
         res.send(200);
     }
-};
 
+ function findUserByUserName(req, res) {
+     var username = req.query.username;
+     if (username) {
+         userModel
+             .findUserByUserName(username)
+             .then(function (user) {
+                 if (user) {
+                     res.json(user);
+                 } else {
+                     res.sendStatus(404);
+                 }
+             });
+     }
+ }

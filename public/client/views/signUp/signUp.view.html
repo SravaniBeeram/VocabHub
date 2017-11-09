@@ -1,0 +1,18 @@
+<div class="header-padding" ng-controller="SignUpController as model">
+
+    <div ng-show="model.message" class="alert alert-info">{{model.message}} </div>
+    <div ng-show = "model.error" class="alert alert-danger">{{model.error}}</div>
+
+    <form class="form-signin">
+
+        <h2 class="form-signin-heading" align="center" style="color:#e21a2d">Sign up for a new account</h2>
+
+        <input type="text" ng-model="username" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+        <input type="password" ng-model="password" class="form-control" name="password" placeholder="Password" required=""/>
+        <input type="password" ng-model="password2" class="form-control" name="password2" placeholder="Verify Password" required=""/>
+
+        <button ng-click="model.register(username,password,password2)" class="btn redBG btn-danger btn-block">Sign Up</button>
+
+    </form>
+
+</div>

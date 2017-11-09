@@ -1,37 +1,30 @@
 (function() {
     "use strict";
-    angular.module("VocabHubApp")
+    angular
+        .module("VocabHubApp")
         .controller("SignInController",SignInController);
 
 
     function SignInController(UserService,$rootScope,$location) {
-        var vm = this;
-        vm.login = login;
-        vm.createUsers = createUsers;
-        vm.userDao = [];
+        var model = this;
+        model.login = login;
+        model.userDao = [];
 
-        function init(){
+        function init() {
 
-        }init();
-
-        function login(user) {
-
-            console.log("user signIn info"+user);
-
-            if (!user) {
-                vm.message = "Please enter signIn details";
-                return;
-            }
-
-            UserService.login(user)
-                .then(function (response) {
-                        $rootScope.currentUser = response.data;
-                        console.log(response);
-                    },
-                    function (err) {
-                        vm.message = "username or password not found";
-                    });
         }
 
+        init();
+
+        function login(username,password) {
+            UserService.login(username,password)
+                .then(function (found) {
+                    if (found !== null) {
+                        $location.url('/profile');
+                    } else {
+                        model.message = "sorry, " + username + " not found. please try again!";
+                    }
+                });
+        }
     }
 })();
