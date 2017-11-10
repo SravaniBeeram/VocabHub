@@ -67,12 +67,11 @@ module.exports = function(app,userModel) {
     function register(req, res) {
         var userObj = req.body;
         userObj.password = bcrypt.hashSync(userObj.password);
-        userModel
-            .createUser(userObj)
+        userModel.createUser(userObj)
             .then(function (user) {
                 req
-                    .login(user, function (status) {
-                        res.send(status);
+                    .login(user, function(status) {
+                        res.json(user).send(status);
                     });
             });
     }

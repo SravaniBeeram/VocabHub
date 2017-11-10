@@ -1,7 +1,7 @@
-module.exports = function () {
+var mongoose = require("mongoose");
+var wordSchema = require("../schemas/word.schema.server.js");
 
-var  wordSchema =  require("../schemas/word.schema.server")();
-    var mongoose = require("mongoose");
+module.exports = function () {
 
     var UserSchema = mongoose.Schema ({
         firstName : String,

@@ -3,7 +3,7 @@
     angular.module("VocabHubApp")
         .controller("HeaderController",HeaderController);
 
-    function HeaderController($rootScope,$location) {
+    function HeaderController(UserService,$rootScope,$location) {
         var vm = this;
         vm.logout = logout;
 
@@ -14,15 +14,13 @@
         init();
 
         function logout() {
-            $rootScope.currentUser = null;
-            console.log("check" +$rootScope.currentUser);
-            /* UserService.logout()
+            UserService.logout()
                  .then(function () {
                      $rootScope.currentUser = null;
                      $location.url('/home');
                  }, function (err) {
                      console.log(err);
-                 });*/
+                 });
 
         }
     }

@@ -7,6 +7,7 @@
 
         var model = {
             login:login,
+            logout:logout,
             register:register,
             findUserByUsername: findUserByUsername
         };
@@ -36,6 +37,10 @@
                 .then(function (response) {
                     return response.data;
                 });
+        }
+
+        function logout() {
+            return $http.post("/api/signOut");
         }
     }
 })();

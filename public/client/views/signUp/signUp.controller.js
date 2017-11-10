@@ -44,7 +44,7 @@
                 .findUserByUsername(username)
                 .then(
                     function () {
-                        model.error = "sorry, that username is taken";
+                        model.error = "Email address already registered";
                     },
                     function () {
                         var newUser = {
@@ -56,6 +56,7 @@
                     }
                 )
                 .then(function (user) {
+                    $rootScope.currentUser = user;
                     $location.url('/profile');
                 });
         }
