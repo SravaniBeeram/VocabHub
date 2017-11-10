@@ -19,8 +19,16 @@
                 controller: "SignInController",
                 controllerAs: "model"
             })
+            .when("/signUp", {
+                templateUrl: "client/views/signUp/signUp.view.html",
+                controller: "SignUpController",
+                controllerAs: "model"
+            })
+            .when("/profile", {
+                templateUrl: "client/views/profile/profile.view.html"
+            })
             .otherwise({
                 redirectTo: "home"
-            });
+             });
     }
 })();

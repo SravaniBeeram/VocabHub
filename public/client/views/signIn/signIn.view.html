@@ -1,5 +1,8 @@
 <div class="header-padding" ng-controller="SignInController as model">
 
+    <div ng-show="model.message" class="alert alert-info">{{model.message}} </div>
+    <div ng-show = "model.error" class="alert alert-danger">{{model.error}}</div>
+
     <form class="form-signin">
 
         <h2 class="form-signin-heading" align="center" style="color:#e21a2d">Sign in to your account</h2>
