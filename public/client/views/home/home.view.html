@@ -1,9 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>VocabHub</title>
-</head>
-<body>
-</body>
-</html>
+<div ng-controller="HomeController as model">
+
+    <div ng-show="model.message" class="alert alert-danger">{{model.message}} </div>
+
+    <form class="form-inline form-signin" style="border: none">
+
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+            <input type="text" class="form-control" ng-model="model.word" placeholder="Look Up">
+        </div>
+
+        <button type="submit" ng-click="model.lookUp(model.word)" class="btn btn-primary">Search</button>
+    </form>
+
+    <div ng-show="model.wordInfo" class="details-container">
+
+        <div class="form-inline">
+            <h3>{{model.wordInfo[0].word}}</h3>
+            <div style="padding-left: 10px"><button type="submit" class="btn btn-sm btn-info">Save</button></div>
+        </div>
+
+
+        <div ng-repeat="info in model.wordInfo[0].lexicalEntries" style="padding-top: 10px">
+
+            <div style="display: inline-block">
+                <i>{{info.lexicalCategory}}</i>
+                <a style="padding-left: 5px">{{info.pronunciations[0].audioFile}}</a>
+            </div>
+
+            <div ng-repeat="i in info.entries[0].senses" style="padding-top: 5px">
+
+                <div class="form-inline">
+                    <i>[M]</i>
+                    <h5 style="padding-left: 2px">{{i.definitions[0]}}</h5>
+                </div>
+
+
+                <div style="padding-top: 5px" ng-show="i.domains[0]">
+                    <i><b>Domain</b></i>
+                    <h6>{{i.domains[0]}}</h6>
+                </div>
+
+                <div style="padding-top: 5px" ng-show="i.examples">
+                    <i><b>Examples</b></i>
+                    <div ng-repeat="ex in i.examples" style="padding-bottom: 5px">
+                        <h6>{{ex.text}}</h6>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

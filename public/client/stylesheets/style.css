@@ -20,6 +20,16 @@
     margin-bottom: 20px;
     border-radius: 7px;
 }
+/*********************************************************/
+
+.details-container{
+    max-width: 1000px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 /*********************************************************************/
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
