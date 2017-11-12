@@ -14,6 +14,11 @@
                 controller: "HomeController",
                 controllerAs: "model"
             })
+            .when("/home/:searchWord", {
+                templateUrl: "client/views/home/home.view.html",
+                controller: "HomeController",
+                controllerAs: "model"
+            })
             .when("/signIn", {
                 templateUrl: "client/views/signIn/signIn.view.html",
                 controller: "SignInController",

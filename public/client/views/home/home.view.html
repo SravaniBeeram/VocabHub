@@ -1,6 +1,5 @@
 <div ng-controller="HomeController as model">
 
-    <div ng-show="model.message" class="alert alert-danger">{{model.message}} </div>
 
     <form class="form-inline form-signin" style="border: none">
 
@@ -12,6 +11,9 @@
         <button type="submit" ng-click="model.lookUp(model.word)" class="btn btn-primary">Search</button>
     </form>
 
+    <div ng-show="model.message" class="alert alert-danger width-class" role="alert">{{model.message}}</div>
+
+
     <div ng-show="model.wordInfo" class="details-container">
 
         <div class="form-inline">
@@ -22,16 +24,17 @@
 
         <div ng-repeat="info in model.wordInfo[0].lexicalEntries" style="padding-top: 10px">
 
+            <hr>
+
             <div style="display: inline-block">
                 <i>{{info.lexicalCategory}}</i>
-                <a style="padding-left: 5px">{{info.pronunciations[0].audioFile}}</a>
+                <a style="padding-left: 10px" href="{{info.pronunciations[0].audioFile}}">Pronunciation</a>
             </div>
 
             <div ng-repeat="i in info.entries[0].senses" style="padding-top: 5px">
 
                 <div class="form-inline">
-                    <i>[M]</i>
-                    <h5 style="padding-left: 2px">{{i.definitions[0]}}</h5>
+                    <h5>{{i.definitions[0]}}</h5>
                 </div>
 
 
@@ -40,8 +43,8 @@
                     <h6>{{i.domains[0]}}</h6>
                 </div>
 
-                <div style="padding-top: 5px" ng-show="i.examples">
-                    <i><b>Examples</b></i>
+                <div ng-show="i.examples">
+                    <i><u>Usage</u></i>
                     <div ng-repeat="ex in i.examples" style="padding-bottom: 5px">
                         <h6>{{ex.text}}</h6>
                     </div>
