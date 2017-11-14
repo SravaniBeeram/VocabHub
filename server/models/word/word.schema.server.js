@@ -5,8 +5,7 @@ module.exports = function () {
     var WordSchema = mongoose.Schema ({
         userId : String,
         wordName : String,
-        wordDetails: String,
-        categories : [String]
+        wordDetails: String
     }, {collection: "WordInfo"});
 
     return WordSchema;

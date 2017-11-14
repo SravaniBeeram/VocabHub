@@ -1,8 +1,10 @@
 var https = require('https');
 
-module.exports = function(app){
+module.exports = function(app,wordModel){
 
     app.get("/api/wordInfo/:word",getWordInfo);
+    app.get("/api/userWords/:userId",getUserWords);
+    app.get("/api/userCategories/:userId",getUserCategories);
 
 
 
@@ -43,6 +45,30 @@ module.exports = function(app){
                         res.send("error"+err);
                     });}
         });
+    }
+
+
+    function getUserWords(req,res){
+
+        wordModel.getUserWords(req.params.userId)
+            .then(function (userWords) {
+                    res.json(userWords);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                })
+    }
+
+    function getUserCategories(req,res){
+
+        console.log("in service categories");
+        wordModel.getUserCategories(req.params.userId)
+            .then(function (userWords) {
+                    res.json(userWords);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                })
     }
 
 };

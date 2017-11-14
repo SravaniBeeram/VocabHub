@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var wordSchema = require("../schemas/word.schema.server.js");
 
 module.exports = function () {
 
@@ -9,9 +8,8 @@ module.exports = function () {
         username :  String, //email id
         password :  String,
         dob:Date,// should be in profile
-        occupation: String, //should be in profile
-        myWords : [wordSchema]
+        occupation: String //should be in profile
     }, {collection: "UserInfo"});
-
     return UserSchema;
+
 };

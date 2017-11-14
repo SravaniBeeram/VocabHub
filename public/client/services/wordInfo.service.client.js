@@ -5,7 +5,9 @@
     function WordInfoService($http) {
 
         var model = {
-            lookUp : lookUp
+            lookUp : lookUp,
+            getUserWords : getUserWords,
+            getUserCategories:getUserCategories
         };
 
         return model;
@@ -17,6 +19,22 @@
                     console.log("response client"+res);
                     return res;
                 });
+        }
+
+        function getUserWords(userId){
+
+            return $http.get("/api/userWords/"+userId)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function getUserCategories(userId){
+            console.log("in client service");
+            return $http.get("/api/userCategories/"+userId)
+                .then(function (response) {
+                    return response.data;
+                })
         }
     }
 

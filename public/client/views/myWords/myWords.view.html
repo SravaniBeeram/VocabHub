@@ -1,0 +1,27 @@
+<div  class="header-padding col-sm-6" ng-controller="MyWordsController as model">
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
+                <a class="nav-link" href data-target="#{{key}}" data-toggle="tab">{{key}}</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane" id="{{key}}" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
+                <div ng-repeat="cat in value">
+                    {{cat.wordId}}
+                    <div ng-repeat="word in model.userWords | filter:{ _id: cat.wordId }">
+                        Word: {{word.wordName}} <br>
+                        Details: {{word.wordDetails}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+</div>
+
+
+

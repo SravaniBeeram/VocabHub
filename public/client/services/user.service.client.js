@@ -35,7 +35,10 @@
         function login(user) {
             return $http.post("/api/signIn",user)
                 .then(function (response) {
-                    return response.data;
+                      if(response)
+                        return response.data;
+                      else
+                          return null;
                 });
         }
 
