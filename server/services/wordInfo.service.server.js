@@ -1,12 +1,12 @@
 var https = require('https');
 
-module.exports = function(app,wordModel){
+module.exports = function(app,wordInfo){
 
     app.get("/api/wordInfo/:word",getWordInfo);
     app.get("/api/userWords/:userId",getUserWords);
     app.get("/api/userCategories/:userId",getUserCategories);
-
-
+    app.post("/api/user/:userId",newWord);
+    app.post("/api/user/:userId/category", newCategory);
 
     function getWordInfo(req,res) {
         console.log("word in service server" + req.params.word);
@@ -50,7 +50,7 @@ module.exports = function(app,wordModel){
 
     function getUserWords(req,res){
 
-        wordModel.getUserWords(req.params.userId)
+        wordInfo.getUserWords(req.params.userId)
             .then(function (userWords) {
                     res.json(userWords);
                 },
@@ -59,10 +59,29 @@ module.exports = function(app,wordModel){
                 })
     }
 
-    function getUserCategories(req,res){
 
+    function newWord(req,res){
+        var userId = req.params.userId;
+        var word = req.body;
+        console.log(userId);
+        wordInfo.newWord(userId,word)
+            .then(function(word){
+                res.send(word);
+            });
+    }
+
+    function newCategory(req,res){
+        var userId = req.params.userId;
+        var category = req.body;
+        wordInfo.newCategory(userId,category)
+            .then(function(category){
+                res.send(category);
+            });
+    }
+
+    function getUserCategories(req,res){
         console.log("in service categories");
-        wordModel.getUserCategories(req.params.userId)
+        wordInfo.getUserCategories(req.params.userId)
             .then(function (userWords) {
                     res.json(userWords);
                 },

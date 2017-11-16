@@ -8,18 +8,33 @@
             <input type="text" class="form-control" ng-model="model.word" placeholder="Look Up">
         </div>
 
-        <button type="submit" ng-click="model.lookUp(model.word)" class="btn btn-primary">Search</button>
+        <div style = "padding-right :10px"><button type="submit" ng-click="model.lookUp(model.word)" class="btn btn-primary">Search</button></div>
+        <div><button type="submit" ng-click="model.showCategories()" class="btn btn-primary">Show Categories</button></div>
+
     </form>
 
     <div ng-show="model.message" class="alert alert-danger width-class" role="alert">{{model.message}}</div>
-
+    <ul class="nav nav-tabs">
+        <li class="nav-item" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
+            <a class="nav-link" href data-target="#{{key}}" data-toggle="tab">{{key}}</a>
+        </li>
+    </ul>
 
     <div ng-show="model.wordInfo" class="details-container">
 
         <div class="form-inline">
             <h3>{{model.wordInfo[0].word}}</h3>
-            <div style="padding-left: 10px"><button type="submit" class="btn btn-sm btn-info">Save</button></div>
-        </div>
+            <div class = "category">
+            <input type="text" class="form-control" ng-model="model.category" placeholder="new Category">
+            <button type="submit" ng-click="model.addWordToNewCategory(model.word,model.category)" class="btn btn-primary">New Category</button>
+
+                <!--<ul class="nav nav-tabs">-->
+                    <!--&lt;!&ndash;<li class="nav-item" ng-repeat="category in model.userCategories | groupBy: 'name'">&ndash;&gt;-->
+                        <!--<a class="nav-link" href data-target="#{{key}}" data-toggle="tab">{{key}}</a>-->
+                        <!--&lt;!&ndash;<label>&ndash;&gt;-->
+                            <!--<input type="radio" ng-model="category" ng-click="model.addWordToCategory(model.word,category)" value = {{category}}>{{category.name}}-->
+                        <!--</label><br/>-->
+
 
 
         <div ng-repeat="info in model.wordInfo[0].lexicalEntries" style="padding-top: 10px">
@@ -53,5 +68,7 @@
         </div>
 
     </div>
-
 </div>
+    </div>
+</div>
+

@@ -7,7 +7,10 @@
         var model = {
             lookUp : lookUp,
             getUserWords : getUserWords,
-            getUserCategories:getUserCategories
+            getUserCategories:getUserCategories,
+            newWord:newWord,
+            // addWord:addWord,
+            newCategory: newCategory
         };
 
         return model;
@@ -22,7 +25,6 @@
         }
 
         function getUserWords(userId){
-
             return $http.get("/api/userWords/"+userId)
                 .then(function (response) {
                     return response.data;
@@ -36,6 +38,31 @@
                     return response.data;
                 })
         }
+
+        function newWord(userId,word){
+            console.log(word);
+            word.userId = userId;
+            return $http.post("/api/user/"+userId ,word)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        // function addWord(userId,word){
+        //     return $http.post("app/user/" +userId, word)
+        //         .then(function(response){
+        //             return response.data;
+        //         })
+        // }
+
+        function newCategory(userId,category){
+            console.log();
+            return $http.post("/api/user/"+userId+"/category" ,category)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
     }
 
 })();
