@@ -32,11 +32,11 @@
 
             UserService.updateUser(id,userDetails)
                 .then(function(user){
-                        $rootScope.currentUser.userName = user.username;
-                        $rootScope.currentUser.firstName= user.firstName;
-                        $rootScope.currentUser.lastName = user.lastName;
-                        $rootScope.currentUser.dob = user.dob;
-                        $rootScope.currentUser.occupation=user.occupation;
+                        $rootScope.currentUser.userName = userDetails.username;
+                        $rootScope.currentUser.firstName= userDetails.firstName;
+                        $rootScope.currentUser.lastName = userDetails.lastName;
+                        $rootScope.currentUser.dob = userDetails.dob;
+                        $rootScope.currentUser.occupation=userDetails.occupation;
                         vm.message = "Your Profile has been updated!";
                     },
                     function(err){
