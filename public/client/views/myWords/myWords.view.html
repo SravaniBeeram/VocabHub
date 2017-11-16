@@ -1,24 +1,50 @@
-<div  class="header-padding col-sm-6" ng-controller="MyWordsController as model">
+<div  class="header-padding" ng-controller="MyWordsController as model">
 
-        <ul class="nav nav-tabs">
-            <li class="nav-item" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
-                <a class="nav-link" href data-target="#{{key}}" data-toggle="tab">{{key}}</a>
-            </li>
-        </ul>
+    <form class="form-myWords">
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div class="tab-pane" id="{{key}}" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
-                <div ng-repeat="cat in value">
-                    {{cat.wordId}}
-                    <div ng-repeat="word in model.userWords | filter:{ _id: cat.wordId }">
-                        Word: {{word.wordName}} <br>
-                        Details: {{word.wordDetails}}
-                    </div>
-                </div>
-            </div>
+        <h4 class="form-signin-heading" align="center" style="color:#e21a2d">My Words</h4>
+        <i class="pull-right" style="font-size:10px"><b>Your saved words grouped by category</b></i>
 
-        </div>
+        <ul class="nav nav-tabs" style="padding-top: 10px">
+             <li class="nav-item" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
+                 <a class="nav-link" href data-target="#{{key}}" data-toggle="tab" ng-class="{'active': $index == 0}">{{key}}</a>
+             </li>
+         </ul>
+
+         <!-- Tab panes -->
+         <div class="tab-content">
+
+             <div ng-class="{'active': $index == 0}" class="tab-pane" id="{{key}}" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
+
+                 <div ng-repeat="cat in value">
+
+                     <div ng-repeat="word in model.userWords | filter:{ _id: cat.wordId }">
+
+                         <div style="display: flex; padding-top: 20px">
+
+                             <h6><b>{{word.wordName}}</b></h6>
+
+                             <div style="padding-left: 10px">
+                                 <button class="btn btn-sm btn-success">
+                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                 </button>
+                             </div>
+
+                             <div style="padding-left: 2px">
+                                 <button class="btn btn-sm btn-danger">
+                                     <i class="fa fa-times" aria-hidden="true"></i>
+                                 </button>
+                             </div>
+                         </div>
+                         <i>{{word.wordDetails}}</i>
+
+                     </div>
+
+                 </div>
+             </div>
+
+         </div>
+     </form>
 
 
 </div>

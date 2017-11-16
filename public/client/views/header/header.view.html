@@ -8,13 +8,28 @@
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav pull-right">
-            <li class="nav-item"><a class="nav-link" href="#/home">Home</a></li>
+            <li class="nav-item" ng-class="{'active': $location.url() == '/home'}">
+                <a class="nav-link" href="#/home">Home</a>
+            </li>
 
-            <li ng-show= "currentUser" class="nav-item"><a class="nav-link" href="#/myWords">My Words</a></li>
+            <li ng-show = "currentUser" class="nav-item" ng-class="{'active': $location.url() == '/myWords'}">
+                <a class="nav-link" href="#/myWords">My Words</a>
+            </li>
 
-            <li ng-hide = "currentUser" class="nav-item"><a class="nav-link" href="#/signIn">Sign In</a></li>
+            <li ng-show = "currentUser" class="nav-item" ng-class="{'active': $location.url() == '/flashCards'}">
+                <a class="nav-link" href="#/flashCards">FlashCards</a></li>
 
-            <li ng-hide = "currentUser" class="nav-item"><a class="nav-link" href="#/signUp">Sign Up</a></li>
+            <li ng-show = "currentUser" class="nav-item" ng-class="{'active': $location.url() == '/profile'}">
+                <a class="nav-link" href="#/profile">Profile</a>
+            </li>
+
+            <li ng-hide = "currentUser" class="nav-item" ng-class="{'active': $location.url() == '/signIn'}">
+                <a class="nav-link" href="#/signIn">Sign In</a>
+            </li>
+
+            <li ng-hide = "currentUser" class="nav-item" ng-class="{'active': $location.url() == '/signUp'}">
+                <a class="nav-link" href="#/signUp">Sign Up</a>
+            </li>
 
             <li ng-show = "currentUser" class="nav-item"><a class="nav-link" href="#/home" ng-click="model.logout()">Sign Out</a></li>
         </ul>

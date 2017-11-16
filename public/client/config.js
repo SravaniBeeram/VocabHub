@@ -14,6 +14,7 @@
                 controller: "HomeController",
                 controllerAs: "model"
             })
+
             .when("/home/:searchWord", {
                 templateUrl: "client/views/home/home.view.html",
                 controller: "HomeController",
@@ -23,6 +24,12 @@
             .when("/myWords",{
                 templateUrl: "client/views/myWords/myWords.view.html",
                 controller: "MyWordsController",
+                controllerAs: "model"
+            })
+
+            .when("/flashCards",{
+                templateUrl: "client/views/flashCards/flashCards.view.html",
+                controller: "FlashCardController",
                 controllerAs: "model"
             })
 
@@ -37,7 +44,9 @@
                 controllerAs: "model"
             })
             .when("/profile", {
-                templateUrl: "client/views/profile/profile.view.html"
+                templateUrl: "client/views/profile/profile.view.html",
+                controller: "ProfileController",
+                controllerAs: "model"
             })
             .otherwise({
                 redirectTo: "home"

@@ -9,7 +9,8 @@
             login:login,
             logout:logout,
             register:register,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+            updateUser:updateUser
         };
 
         return model;
@@ -40,6 +41,10 @@
                       else
                           return null;
                 });
+        }
+
+        function updateUser(userId,user) {
+            return $http.put("/api/updateUser/" +userId ,user);
         }
 
         function logout() {
