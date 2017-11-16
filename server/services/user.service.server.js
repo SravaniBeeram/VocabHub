@@ -4,12 +4,11 @@ module.exports = function(app,userModel) {
     var LocalStrategy = require('passport-local').Strategy;
     var bcrypt = require("bcrypt-nodejs");
 
-    var auth = authorized;
     app.post('/api/signIn', passport.authenticate('local'), login);
     app.post('/api/signOut', logout);
     app.get('/api/loggedIn', loggedIn);
     app.get('/api/signUp/user', findUserByUserName);
-    // app.get('/api/signUp/user?username);
+    app.put("/api/updateUser/:userId",updateUser);
     app.post('/api/signUp/register', register);
 
 
@@ -104,4 +103,21 @@ module.exports = function(app,userModel) {
                 });
         }
     }
+
+    function updateUser(req,res){
+        var userId =req.params.userId;
+        var UpdatedUser = req.body;
+
+        if(UpdatedUser.password.length <= 40){
+            UpdatedUser.password = bcrypt.hashSync(UpdatedUser.password);
+        }
+        userModel.updateUser(userId,UpdatedUser)
+            .then(function (user) {
+                    res.json(user);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+    }
+
 };

@@ -1,0 +1,40 @@
+<div class="header-padding" ng-controller="FlashCardController">
+
+    <form class="form-flashCard">
+
+        <div style="padding-bottom: 10px;">
+            <h4 class="form-signin-heading" align="center" style="color:#e21a2d">FlashCards</h4>
+            <i  style="font-size:10px;padding-left: 300px"><b>Review your saved words - words will be shuffled</b></i>
+        </div>
+
+         <div class="form-card pointer" ng-repeat="word in model.userWords | startFrom:model.currentPage * model.pageSize
+                                                                   | limitTo:model.pageSize" ng-click="model.showMeaning = !model.showMeaning">
+
+             <h6 ng-hide="model.showMeaning" class="form-signin-heading" align="center" style="color:#e21a2d">Word</h6>
+             <h6 ng-show="model.showMeaning" class="form-signin-heading" align="center" style="color:#e21a2d">Meaning</h6>
+
+             <hr>
+
+             <div align="center" style="height: 80px;padding-top: 20px">
+                 <b ng-hide="model.showMeaning">{{word.wordName}}</b>
+                 <b ng-show="model.showMeaning">{{word.wordDetails}}</b>
+             </div>
+
+             <i class="pull-right" style="font-size: 10px;padding-top: 80px"><b>Click to flip the card</b></i>
+
+         </div>
+
+         <div align="center" style="padding-top: 15px;" ng-click="model.showMeaning = false">
+
+             <button class="btn btn-sm" ng-disabled="model.currentPage == 0" ng-click= "model.currentPage = model.currentPage-1">
+                 <i class="fa fa-step-backward" aria-hidden="true"></i>
+             </button>
+
+             <button class="btn btn-sm" ng-disabled="model.currentPage >= model.userWords.length/model.pageSize - 1"
+                     ng-click="model.currentPage = model.currentPage+1">
+                 <i class="fa fa-step-forward" aria-hidden="true"></i>
+             </button>
+         </div>
+    </form>
+
+</div>

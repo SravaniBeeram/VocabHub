@@ -24,7 +24,7 @@
                 .then(function (info) {
                     if (info) {
                         $rootScope.currentUser = info;
-                        $location.url('/profile');
+                        $location.url('/home');
                     } else {
                         vm.message = "sorry, " + user.username + " not found. please try again!";
                     }

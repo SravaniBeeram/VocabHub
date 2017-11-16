@@ -9,7 +9,8 @@ module.exports = function () {
         createUser : createUser,
         findUserById: findUserById,
         findUserByUserName: findUserByUserName,
-        findUserByCredentials: findUserByCredentials
+        findUserByCredentials: findUserByCredentials,
+        updateUser:updateUser
     };
 
     return api;
@@ -28,6 +29,11 @@ module.exports = function () {
 
     function findUserByCredentials(username, password) {
         return UserInfo.findOne({username: username, password: password});
+    }
+
+    function updateUser(userId,userDetails) {
+        delete userDetails._id;
+        return UserInfo.update({_id:userId}, {$set:userDetails});
     }
 
 };

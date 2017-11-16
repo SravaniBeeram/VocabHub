@@ -1,7 +1,7 @@
 <div ng-controller="HomeController as model">
 
 
-    <form class="form-inline form-signin" style="border: none">
+    <form class="form-inline form-home" style="border: none">
 
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
             <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
@@ -43,7 +43,9 @@
 
             <div style="display: inline-block">
                 <i>{{info.lexicalCategory}}</i>
-                <a style="padding-left: 10px" href="{{info.pronunciations[0].audioFile}}">Pronunciation</a>
+                <a href="{{info.pronunciations[0].audioFile}}">
+                    <i class="btn btn-sm fa fa-volume-up" aria-hidden="true"></i>
+                </a>
             </div>
 
             <div ng-repeat="i in info.entries[0].senses" style="padding-top: 5px">

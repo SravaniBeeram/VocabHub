@@ -1,3 +1,11 @@
+.pointer{
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
+}
+
 .form-signin {
     max-width: 400px;
     padding: 15px 35px 45px;
@@ -58,15 +66,46 @@ a{
     margin-top: 100px;
 }
 /********************************************************************/
-.nav.nav-tabs {
-    float: left;
-    display: block;
-    margin-right: 20px;
-    border-bottom:0;
-    border-right: 1px solid #ddd;
-    padding-right: 15px;
+.form-myWords {
+    max-width: 500px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
-
+/**************************************************************************/
+.form-profile {
+    max-width: 600px;
+    padding: 30px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+/**************************************************************************/
+.form-home {
+    max-width: 400px;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+/**************************************************************************/
+.form-flashCard {
+    max-width: 600px;
+    padding: 30px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+/**************************************************************************/
+.form-card {
+    width: 300px;
+    height:250px;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
 
 .dropbtn {
     background-color: #4CAF50;
@@ -107,8 +146,6 @@ a{
 
 .show {display:block;}
 /********************************************************
-
-
 
 
 
