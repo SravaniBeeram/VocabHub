@@ -5,8 +5,8 @@ module.exports = function(app,wordInfo){
     app.get("/api/wordInfo/:word",getWordInfo);
     app.get("/api/userWords/:userId",getUserWords);
     app.get("/api/userCategories/:userId",getUserCategories);
-    app.post("/api/user/:userId",newWord);
-    app.post("/api/user/:userId/category", newCategory);
+    app.post("/api/saveWord",saveWord);
+    app.post("/api/newCat", newCategory);
 
     function getWordInfo(req,res) {
         console.log("word in service server" + req.params.word);
@@ -60,22 +60,19 @@ module.exports = function(app,wordInfo){
     }
 
 
-    function newWord(req,res){
-        var userId = req.params.userId;
+    function saveWord(req,res){
         var word = req.body;
-        console.log(userId);
-        wordInfo.newWord(userId,word)
-            .then(function(word){
-                res.send(word);
+        wordInfo.saveWord(word)
+            .then(function(doc){
+                res.send(doc);
             });
     }
 
     function newCategory(req,res){
-        var userId = req.params.userId;
         var category = req.body;
-        wordInfo.newCategory(userId,category)
-            .then(function(category){
-                res.send(category);
+        wordInfo.newCategory(category)
+            .then(function(doc){
+                res.send(doc);
             });
     }
 

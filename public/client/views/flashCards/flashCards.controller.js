@@ -25,7 +25,11 @@
             if($rootScope.currentUser._id){
                 WordInfoService.getUserWords($rootScope.currentUser._id)
                     .then(function(res){
-                        vm.userWords = vm.shuffle(res);
+                        if(res.length > 0)
+                           vm.userWords = vm.shuffle(res);
+                        else
+                            vm.message = "Save words to review";
+
                     })
             }
             else

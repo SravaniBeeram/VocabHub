@@ -13,13 +13,17 @@
                 WordInfoService.getUserCategories($rootScope.currentUser._id)
                     .then(function (response) {
 
-                        vm.userCategories = response;
+                        if(response.length > 0){
+                            vm.userCategories = response;
 
-                        WordInfoService.getUserWords($rootScope.currentUser._id)
-                            .then(function(res){
-                                vm.userWords = res;
+                            WordInfoService.getUserWords($rootScope.currentUser._id)
+                                .then(function(res){
+                                    vm.userWords = res;
 
-                            })
+                                })
+                        }
+                        else
+                            vm.message = "No words saved!!";
                     })
             }
             else

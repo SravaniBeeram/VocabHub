@@ -8,8 +8,7 @@
             lookUp : lookUp,
             getUserWords : getUserWords,
             getUserCategories:getUserCategories,
-            newWord:newWord,
-            // addWord:addWord,
+            saveWord:saveWord,
             newCategory: newCategory
         };
 
@@ -39,10 +38,9 @@
                 })
         }
 
-        function newWord(userId,word){
+        function saveWord(word){
             console.log(word);
-            word.userId = userId;
-            return $http.post("/api/user/"+userId ,word)
+            return $http.post("/api/saveWord/",word)
                 .then(function (response) {
                     return response.data;
                 })
@@ -55,9 +53,9 @@
         //         })
         // }
 
-        function newCategory(userId,category){
+        function newCategory(catDetails){
             console.log();
-            return $http.post("/api/user/"+userId+"/category" ,category)
+            return $http.post("/api/newCat/",catDetails)
                 .then(function (response) {
                     return response.data;
                 })

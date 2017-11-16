@@ -8,34 +8,38 @@
             <input type="text" class="form-control" ng-model="model.word" placeholder="Look Up">
         </div>
 
-        <div style = "padding-right :10px"><button type="submit" ng-click="model.lookUp(model.word)" class="btn btn-primary">Search</button></div>
-        <div><button type="submit" ng-click="model.showCategories()" class="btn btn-primary">Show Categories</button></div>
-
+        <button type="submit" ng-click="model.lookUp(model.word)" class="btn btn-primary">Search</button>
     </form>
 
     <div ng-show="model.message" class="alert alert-danger width-class" role="alert">{{model.message}}</div>
-    <ul class="nav nav-tabs">
-        <li class="nav-item" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
-            <a class="nav-link" href data-target="#{{key}}" data-toggle="tab">{{key}}</a>
-        </li>
-    </ul>
+
 
     <div ng-show="model.wordInfo" class="details-container">
 
         <div class="form-inline">
             <h3>{{model.wordInfo[0].word}}</h3>
-            <div class = "category">
-            <input type="text" class="form-control" ng-model="model.category" placeholder="new Category">
-            <button type="submit" ng-click="model.addWordToNewCategory(model.word,model.category)" class="btn btn-primary">New Category</button>
 
-                <!--<ul class="nav nav-tabs">-->
-                    <!--&lt;!&ndash;<li class="nav-item" ng-repeat="category in model.userCategories | groupBy: 'name'">&ndash;&gt;-->
-                        <!--<a class="nav-link" href data-target="#{{key}}" data-toggle="tab">{{key}}</a>-->
-                        <!--&lt;!&ndash;<label>&ndash;&gt;-->
-                            <!--<input type="radio" ng-model="category" ng-click="model.addWordToCategory(model.word,category)" value = {{category}}>{{category.name}}-->
-                        <!--</label><br/>-->
+            <div style="padding-left: 10px" ng-hide="currentUser">
+                <button class="btn btn-sm btn-info" ng-click="model.showMessage()">Save</button>
+            </div>
 
 
+            <div  class="input-group" style="padding-left: 10px" ng-show="currentUser">
+
+                <button ng-show="model.catStatus" class="btn btn-sm btn-info" ng-click="model.catStatus = false">Add to a Category</button>
+
+                <input ng-hide="model.catStatus" type="text" class="form-control" ng-model="model.catName" placeholder="Enter new category">
+
+                <select ng-hide="model.catStatus" class="form-control" ng-model="model.catName">
+                    <option value="" disabled selected>Select existing</option>
+                    <option ng-repeat="cat in model.userCategories| unique:'name'" value={{cat.name}}>{{cat.name}}</option>
+                </select>
+
+                <span class="input-group-btn">
+                    <button ng-hide="model.catStatus"  class="btn btn-sm btn-info" ng-click="model.saveWord()">Save</button>
+                </span>
+            </div>
+        </div>
 
         <div ng-repeat="info in model.wordInfo[0].lexicalEntries" style="padding-top: 10px">
 
@@ -70,7 +74,5 @@
         </div>
 
     </div>
-</div>
-    </div>
-</div>
 
+</div>

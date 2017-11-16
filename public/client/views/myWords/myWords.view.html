@@ -2,48 +2,55 @@
 
     <form class="form-myWords">
 
-        <h4 class="form-signin-heading" align="center" style="color:#e21a2d">My Words</h4>
-        <i class="pull-right" style="font-size:10px"><b>Your saved words grouped by category</b></i>
+        <div ng-show="model.message" class="alert alert-danger width-class" role="alert">{{model.message}}</div>
 
-        <ul class="nav nav-tabs" style="padding-top: 10px">
-             <li class="nav-item" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
-                 <a class="nav-link" href data-target="#{{key}}" data-toggle="tab" ng-class="{'active': $index == 0}">{{key}}</a>
-             </li>
-         </ul>
+        <div ng-show="model.userCategories">
 
-         <!-- Tab panes -->
-         <div class="tab-content">
+            <h4 class="form-signin-heading" align="center" style="color:#e21a2d">My Words</h4>
+            <i class="pull-right" style="font-size:10px"><b>Your saved words grouped by category</b></i>
 
-             <div ng-class="{'active': $index == 0}" class="tab-pane" id="{{key}}" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
+            <ul class="nav nav-tabs" style="padding-top: 10px">
+                <li class="nav-item" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
+                    <a class="nav-link" href data-target="#{{key}}" data-toggle="tab" ng-class="{'active': $index == 0}">{{key}}</a>
+                </li>
+            </ul>
 
-                 <div ng-repeat="cat in value">
+            <!-- Tab panes -->
+            <div class="tab-content">
 
-                     <div ng-repeat="word in model.userWords | filter:{ _id: cat.wordId }">
+                <div ng-class="{'active': $index == 0}" class="tab-pane" id="{{key}}" ng-repeat="(key,value) in model.userCategories | groupBy: 'name'">
 
-                         <div style="display: flex; padding-top: 20px">
+                    <div ng-repeat="cat in value">
 
-                             <h6><b>{{word.wordName}}</b></h6>
+                        <div ng-repeat="word in model.userWords | filter:{ _id: cat.wordId }">
 
-                             <div style="padding-left: 10px">
-                                 <button class="btn btn-sm btn-success">
-                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                 </button>
-                             </div>
+                            <div style="display: flex; padding-top: 20px">
 
-                             <div style="padding-left: 2px">
-                                 <button class="btn btn-sm btn-danger">
-                                     <i class="fa fa-times" aria-hidden="true"></i>
-                                 </button>
-                             </div>
-                         </div>
-                         <i>{{word.wordDetails}}</i>
+                                <h6><b>{{word.wordName}}</b></h6>
 
-                     </div>
+                                <div style="padding-left: 10px">
+                                    <button class="btn btn-sm btn-success">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </div>
 
-                 </div>
-             </div>
+                                <div style="padding-left: 2px">
+                                    <button class="btn btn-sm btn-danger">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <i>{{word.wordDetails}}</i>
 
-         </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
      </form>
 
 

@@ -1,7 +1,5 @@
-module.exports = function(app,$http){
+module.exports = function(app){
 
-    var mongoose = require('mongoose');
-    mongoose.Promise = require('q').Promise;
     var userModel = require("./models/user/user.model.js")(app);
     var wordModel =require("./models/word/word.model.js")(app);
 

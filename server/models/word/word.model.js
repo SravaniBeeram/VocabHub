@@ -12,17 +12,17 @@ module.exports = function () {
     var api ={
         getUserWords : getUserWords,
         getUserCategories:getUserCategories,
-        newWord : newWord,
+        saveWord : saveWord,
         newCategory: newCategory
     };
 
     return api;
 
 
-    function newWord(userId,word){
+    function saveWord(word){
         return WordInfo.create(word);
     }
-    function newCategory(userId,category){
+    function newCategory(category){
         return CategoryInfo.create(category);
     }
 
@@ -31,7 +31,6 @@ module.exports = function () {
     }
 
     function getUserCategories(id){
-        console.log("in model categories");
         return CategoryInfo.find({userId:id});
     }
 
