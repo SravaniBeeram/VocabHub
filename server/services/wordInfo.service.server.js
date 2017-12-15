@@ -14,7 +14,7 @@ module.exports = function(app,wordInfo){
         var options = {
             host :  'od-api.oxforddictionaries.com',
             port : 443,
-            path : '/api/v1/entries/en/'+req.params.word,
+            path : '/api/v1/entries/en/ace',
             method : 'GET',
             headers : {
                 "Accept": "application/json",
